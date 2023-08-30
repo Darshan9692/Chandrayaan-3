@@ -11,7 +11,6 @@ public class Chandrayaan3Test {
         assertEquals("N", chandryaan.dir);
         assertArrayEquals(new int[] { 0, 0, 0 }, chandryaan.coordinates);
 
-
         Chandrayan3 obj = new Chandrayan3("N",new int[]{0,0,0});
         char[] commands = { 'f', 'r', 'u', 'b', 'l' };
 
@@ -28,5 +27,6 @@ public class Chandrayaan3Test {
 
         assertEquals("N", obj1.dir);
         assertArrayEquals(new int[] { 0, -1, 0 }, obj1.coordinates);
+
     }
 }
