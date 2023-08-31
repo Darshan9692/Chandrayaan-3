@@ -5,28 +5,63 @@ import org.junit.Test;
 
 public class Chandrayaan3Test {
     @Test
-    public void testChandraan() {
-        Chandrayan3 chandryaan = new Chandrayan3("N",new int[]{0,0,0});
+    public void testChandraan1() {
+        Chandarayan3 chandryaan = new Chandarayan3(0,0,0,"N");
 
-        assertEquals("N", chandryaan.dir);
-        assertArrayEquals(new int[] { 0, 0, 0 }, chandryaan.coordinates);
+        String[] commands = {"f","r","u","b","l"};
 
-        Chandrayan3 obj = new Chandrayan3("N",new int[]{0,0,0});
-        char[] commands = { 'f', 'r', 'u', 'b', 'l' };
+        chandryaan.sendMessage(commands);
 
-        obj.handleMove(commands);
-
-        assertEquals("N", obj.dir);
-        assertArrayEquals(new int[] { 0, 1, -1 }, obj.coordinates);
-
-
-        Chandrayan3 obj1 = new Chandrayan3("N",new int[]{0,0,0});
-        char[] commands1 = { 'f', 'b' , 'b'};
-
-        obj1.handleMove(commands1);
-
-        assertEquals("N", obj1.dir);
-        assertArrayEquals(new int[] { 0, -1, 0 }, obj1.coordinates);
+        assertEquals(0,chandryaan.getX());
+        assertEquals(1,chandryaan.getY());
+        assertEquals(-1,chandryaan.getZ());
+        assertEquals("N",chandryaan.getDir());
 
     }
+
+    @Test
+    public void testChandraan2() {
+        Chandarayan3 chandryaan = new Chandarayan3(0,1,0,"Up");
+
+        String[] commands = {"r","f","u","b","r"};
+
+        chandryaan.sendMessage(commands);
+
+        assertEquals(1,chandryaan.getX());
+        assertEquals(1,chandryaan.getY());
+        assertEquals(-1,chandryaan.getZ());
+        assertEquals("S",chandryaan.getDir());
+
+    }
+
+    @Test
+    public void testChandraan3() {
+        Chandarayan3 chandryaan = new Chandarayan3(0,0,0,"E");
+
+        String[] commands = {"f","f"};
+
+        chandryaan.sendMessage(commands);
+
+        assertEquals(2,chandryaan.getX());
+        assertEquals(0,chandryaan.getY());
+        assertEquals(0,chandryaan.getZ());
+        assertEquals("E",chandryaan.getDir());
+
+    }
+
+    @Test
+    public void testChandraan4() {
+        Chandarayan3 chandryaan = new Chandarayan3(0,0,0,"S");
+
+        String[] commands = {"b","f","b"};
+
+        chandryaan.sendMessage(commands);
+
+        assertEquals(0,chandryaan.getX());
+        assertEquals(1,chandryaan.getY());
+        assertEquals(0,chandryaan.getZ());
+        assertEquals("S",chandryaan.getDir());
+
+    }
+
 }
