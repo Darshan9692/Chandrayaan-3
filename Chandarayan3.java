@@ -1,11 +1,11 @@
 public class Chandarayan3 {
 
-    String defaultDirection = "N";
-    String prevDirection;
-    int x;
-    int y;
-    int z;
-    String direction;
+    private String defaultDirection = "N";
+    private String prevDirection;
+    private int x;
+    private int y;
+    private int z;
+    private String direction;
 
     public Chandarayan3(int x, int y, int z, String direction) {
         this.x = x;
@@ -14,8 +14,8 @@ public class Chandarayan3 {
         this.direction = direction;
     }
 
-    public void sendMessage(String[] command) {
-        for (String cmd : command) {
+    public void sendMessage(String[] commands) {
+        for (String cmd : commands) {
             switch (cmd) {
                 case "f":
                     forward();
@@ -36,95 +36,119 @@ public class Chandarayan3 {
                     down();
                     break;
                 default:
-                    System.out.println("Give Valid Command");
+                    System.out.println("Invalid Command: " + cmd);
             }
         }
     }
 
     private void down() {
-        if (direction != "Up" || direction != "Down")
+        if (!direction.equals("Up") && !direction.equals("Down"))
             prevDirection = direction;
         direction = "Down";
     }
 
     private void up() {
-        if (direction != "Up" || direction != "Down")
+        if (!direction.equals("Up") && !direction.equals("Down"))
             prevDirection = direction;
         direction = "Up";
     }
 
     private void right() {
-        if (direction == "N")
+        if (direction.equals("N"))
             direction = "E";
-        else if (direction == "E")
+        else if (direction.equals("E"))
             direction = "S";
-        else if (direction == "S")
+        else if (direction.equals("S"))
             direction = "W";
-        else if (direction == "W")
+        else if (direction.equals("W"))
             direction = "N";
         else {
             String temp = prevDirection != null ? prevDirection : defaultDirection;
-            if (temp == "N")
-                direction = "E";
-            else if (temp == "E")
-                direction = "S";
-            else if (temp == "S")
-                direction = "W";
-            else
-                direction = "N";
+            switch (temp) {
+                case "N":
+                    direction = "E";
+                    break;
+                case "E":
+                    direction = "S";
+                    break;
+                case "S":
+                    direction = "W";
+                    break;
+                default:
+                    direction = "N";
+            }
         }
     }
 
     private void left() {
-        if (direction == "N")
+        if (direction.equals("N"))
             direction = "W";
-        else if (direction == "E")
+        else if (direction.equals("E"))
             direction = "N";
-        else if (direction == "S")
+        else if (direction.equals("S"))
             direction = "E";
-        else if (direction == "W")
+        else if (direction.equals("W"))
             direction = "S";
         else {
             String temp = prevDirection != null ? prevDirection : defaultDirection;
-            if (temp == "N")
-                direction = "W";
-            else if (temp == "E")
-                direction = "N";
-            else if (temp == "S")
-                direction = "E";
-            else
-                direction = "S";
+            switch (temp) {
+                case "N":
+                    direction = "W";
+                    break;
+                case "E":
+                    direction = "N";
+                    break;
+                case "S":
+                    direction = "E";
+                    break;
+                default:
+                    direction = "S";
+            }
         }
     }
 
     private void backward() {
-        if (direction == "N")
-            y--;
-        else if (direction == "S")
-            y++;
-        else if (direction == "W")
-            x++;
-        else if (direction == "E")
-            x--;
-        else if (direction == "Up")
-            z--;
-        else
-            z++;
+        switch (direction) {
+            case "N":
+                y--;
+                break;
+            case "S":
+                y++;
+                break;
+            case "W":
+                x++;
+                break;
+            case "E":
+                x--;
+                break;
+            case "Up":
+                z--;
+                break;
+            default:
+                z++;
+        }
     }
 
     private void forward() {
-        if (direction == "N")
-            y++;
-        else if (direction == "S")
-            y--;
-        else if (direction == "W")
-            x--;
-        else if (direction == "E")
-            x++;
-        else if (direction == "Up")
-            z++;
-        else
-            z--;
+        switch (direction) {
+            case "N":
+                y++;
+                break;
+            case "S":
+                y--;
+                break;
+            case "W":
+                x--;
+                break;
+            case "E":
+                x++;
+                break;
+            case "Up":
+                z++;
+                break;
+            default:
+                z--;
+        }
     }
 
     public int getX() {
@@ -146,7 +170,6 @@ public class Chandarayan3 {
     public static void main(String[] args) {
         Chandarayan3 c = new Chandarayan3(1, 1, 1, "Up");
         String[] commands = { "r", "l", "f", "f", "u", "b" };
-        ;
         c.sendMessage(commands);
         System.out.println(c.getX() + " " + c.getY() + " " + c.getZ() + " " + c.getDir());
     }
