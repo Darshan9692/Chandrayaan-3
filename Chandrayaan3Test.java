@@ -1,8 +1,6 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-
-
 public class Chandrayaan3Test {
     @Test
     public void testChandraan1() {
