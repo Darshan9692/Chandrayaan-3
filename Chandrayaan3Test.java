@@ -64,4 +64,19 @@ public class Chandrayaan3Test {
 
     }
 
+    @Test
+    public void testChandraan5() {
+        Chandarayan3 chandryaan = new Chandarayan3(1,1,1,"Up");
+
+        String[] commands = {"r" , "l", "f" , "f", "u", "b"};
+
+        chandryaan.sendMessage(commands);
+
+        assertEquals(1,chandryaan.getX());
+        assertEquals(3,chandryaan.getY());
+        assertEquals(0,chandryaan.getZ());
+        assertEquals("Up",chandryaan.getDir());
+
+    }
+
 }
